@@ -7,9 +7,9 @@ import requests
 
 load_dotenv()
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL = "llama3-8b-8192"  # or your preferred Groq model
+_API_KEY = os.getenv("_API_KEY")
+
+LLM_MODEL = "llama3-8b-8192" 
 
 app = FastAPI()
 
@@ -34,12 +34,12 @@ You are an AI email assistant. Rewrite this email in a {data.style} tone:
 """
 
     headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Authorization": f"Bearer {_API_KEY}",
         "Content-Type": "application/json"
     }
 
     body = {
-        "model": GROQ_MODEL,
+        "model": LLM_MODEL,
         "messages": [
             {"role": "system", "content": "You are an email assistant."},
             {"role": "user", "content": prompt}
@@ -58,4 +58,4 @@ You are an AI email assistant. Rewrite this email in a {data.style} tone:
 
 @app.get("/")
 def root():
-    return {"message": "Email Rewriter API is working with Groq!"}
+    return {"message": "Email Rewriter API is working "}
